@@ -1,41 +1,60 @@
 body {
-  font-family: Georgia, serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f5b67a;
-  margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.container {
-  text-align: center;
-  background-color: #e08026;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.game-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
+.title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-#timer, #current-key, #score {
-  margin: 10px 0;
+.instructions {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.key-display {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #ff6600;
+}
+
+.scoreboard {
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 1em;
-  background-color: #7ad6f5;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #3399ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-button:disabled {
-  background-color: #547a87;
-  cursor: not-allowed;
+button:hover {
+    background-color: #1e7fcc;
+}
+
+.game-over {
+    font-size: 1.5em;
+    color: #ff3300;
+    display: none;
+    margin-top: 20px;
 }
