@@ -16,7 +16,6 @@ function startGame() {
   updateUI();
   startButton.disabled = true;
   
-  // Start the timer
   timer = setInterval(function() {
     if (timeLeft > 0) {
       timeLeft--;
