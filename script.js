@@ -1,62 +1,54 @@
-et timer;
-let timeLeft = 30;
 let score = 0;
-let gameStarted = false;
-let keys = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
-let currentKey = '';
-let keyToPressElement = document.getElementById('key-to-press');
-let scoreElement = document.getElementById('score-value');
-let timeLeftElement = document.getElementById('time-left');
-let startButton = document.getElementById('start-button');
+let timeLeft = 30;
+let gameInterval;
+let currentKey;
+
+const scoreElement = document.getElementById("score");
+const timeLeftElement = document.getElementById("time-left");
+const keyDisplay = document.getElementById("key-display");
+const gameOverElement = document.getElementById("game-over");
+const startButton = document.getElementById("start-button");
+
+const keys = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 function startGame() {
-  gameStarted = true;
-  score = 0;
-  timeLeft = 30;
-  updateUI();
-  startButton.disabled = true;
-  
-  timer = setInterval(function() {
-    if (timeLeft > 0) {
-      timeLeft--;
-      updateUI();
-    } else {
-      endGame();
+    score = 0;
+    timeLeft = 30;
+    scoreElement.textContent = score;
+    timeLeftElement.textContent = timeLeft;
+    gameOverElement.style.display = "none";
+
+    startButton.disabled = true;
+    gameInterval = setInterval(updateGame, 1000);
+    showNewKey();
+}
+
+function updateGame() {
+    timeLeft--;
+    timeLeftElement.textContent = timeLeft;
+
+    if (timeLeft <= 0) {
+        clearInterval(gameInterval);
+        gameOverElement.style.display = "block";
+        startButton.disabled = false;
+        startButton.textContent = "Try Again";
     }
-  }, 1000);
-
-  setInterval(randomKey, 2000);
 }
 
-function endGame() {
-  clearInterval(timer);
-  alert('Game Over! Your final score is: ' + score);
-  startButton.disabled = false;
-  gameStarted = false;
+function showNewKey() {
+    const randomIndex = Math.floor(Math.random() * keys.length);
+    currentKey = keys[randomIndex];
+    keyDisplay.textContent = currentKey;
 }
 
-function randomKey() {
-  const randomIndex = Math.floor(Math.random() * keys.length);
-  currentKey = keys[randomIndex];
-  keyToPressElement.textContent = currentKey;
-}
-
-function updateUI() {
-  timeLeftElement.textContent = timeLeft;
-  scoreElement.textContent = score;
-}
-
-document.addEventListener('keydown', function(event) {
-  if (!gameStarted) return;
-  
-  if (event.key.toUpperCase() === currentKey) {
-    score++;
-    randomKey(); 
-  }
+document.addEventListener("keydown", (event) => {
+    if (event.key.toUpperCase() === currentKey) {
+        score++;
+        scoreElement.textContent = score;
+        showNewKey();
+    }
 });
-  
-startButton.addEventListener('click', function() {
-  if (!gameStarted) {
+
+startButton.addEventListener("click", () => {
     startGame();
-  }
 });
