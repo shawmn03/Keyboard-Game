@@ -1,0 +1,41 @@
+body {
+  font-family: Georgia, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5b67a;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  background-color: #e08026;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#timer, #current-key, #score {
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #7ad6f5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #547a87;
+  cursor: not-allowed;
+}
